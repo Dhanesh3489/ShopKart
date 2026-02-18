@@ -1,0 +1,35 @@
+<div class="container mt-4" *ngIf="!loading && product">
+
+  <button class="btn btn-secondary mb-3" (click)="goBack()">
+    ← Back to Products
+  </button>
+
+  <div class="card p-4 shadow">
+    <div class="row">
+
+      <div class="col-md-5 text-center">
+        <img
+          [src]="product.imageUrl"
+          class="img-fluid"
+          style="max-height:300px; object-fit:contain"
+        />
+      </div>
+
+      <div class="col-md-7">
+        <h2>{{ product.name }}</h2>
+        <h4 class="text-success mt-3">₹ {{ product.price }}</h4>
+
+        <p class="mt-4 text-muted">
+          This is a demo product description.  
+          You can extend this later with specs, reviews, ratings.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<div *ngIf="loading" class="text-center mt-5">
+  <h4>Loading...</h4>
+</div>

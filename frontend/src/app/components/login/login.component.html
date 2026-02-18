@@ -1,0 +1,19 @@
+<div class="container mt-5" style="max-width:400px">
+  <h3>Admin Login</h3>
+
+  <input class="form-control mb-2"
+         placeholder="Username"
+         [(ngModel)]="username">
+
+  <input type="password"
+         class="form-control mb-3"
+         placeholder="Password"
+         [(ngModel)]="password">
+
+  <button class="btn btn-primary w-100"
+          (click)="login()">
+    Login
+  </button>
+
+  <div class="text-danger mt-2">{{ error }}</div>
+</div>

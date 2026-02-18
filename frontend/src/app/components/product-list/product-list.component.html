@@ -1,0 +1,65 @@
+<!-- TOP BAR -->
+<div class="top-bar">
+  <h3>ShopKart</h3>
+  <button class="logout-btn" (click)="logout()">Logout</button>
+</div>
+
+<!-- SEARCH -->
+<div class="search-container">
+  <input
+    type="text"
+    placeholder="Search for mobiles, brands & more"
+    [(ngModel)]="searchText"
+    (input)="onSearch()" />
+</div>
+
+<!-- ADD PRODUCT (ADMIN) -->
+<div class="add-box">
+  <input placeholder="Product name" [(ngModel)]="formProduct.name" />
+  <input type="number" placeholder="Price" [(ngModel)]="formProduct.price" />
+  <input placeholder="Image URL" [(ngModel)]="formProduct.imageUrl" />
+
+  <button *ngIf="!isEditMode" (click)="addProduct()">Add</button>
+
+  <div *ngIf="isEditMode" class="edit-actions">
+    <button class="update" (click)="updateProduct()">Update</button>
+    <button class="cancel" (click)="resetForm()">Cancel</button>
+  </div>
+</div>
+
+<!-- PRODUCTS GRID -->
+<div class="products-grid">
+  <div class="product-card" *ngFor="let p of products"
+       (click)="openDetails(p.id)">
+
+    <img [src]="p.imageUrl" />
+
+    <div class="info">
+      <div class="name">{{ p.name }}</div>
+      <div class="price">₹ {{ p.price }}</div>
+    </div>
+
+    <!-- ADMIN BUTTONS -->
+    <div class="actions">
+      <button (click)="editProduct(p); $event.stopPropagation()">Edit</button>
+      <button class="danger"
+              (click)="deleteProduct(p.id); $event.stopPropagation()">
+        Delete
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- PAGINATION -->
+<div class="pagination" *ngIf="totalPages > 1">
+  <button (click)="goToPage(currentPage-1)" [disabled]="currentPage===1">
+    Prev
+  </button>
+
+  <span>Page {{ currentPage }} of {{ totalPages }}</span>
+
+  <button (click)="goToPage(currentPage+1)"
+          [disabled]="currentPage===totalPages">
+    Next
+  </button>
+</div>
